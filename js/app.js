@@ -28,14 +28,27 @@ const navList = document.getElementById('navbar__list');
 */
 
 
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ * 
+*/
 
-function scrollToSection(event){
-    event.preventDefault();
-    const secId = event.target.getAttribute('href');
-    const section=document.querySelector(secId);
-    section.scrollIntoView({behavior: 'smooth', block: 'center'}); 
-}
+// build the nav
+    for (const section of sections) {
+        const liElement = document.createElement('li');
+        const anchor = document.createElement('a');
+        const anchorText = document.createTextNode(section.getAttribute('data-nav'));
+        anchor.setAttribute('href',"#"+section.getAttribute('id'));
+        anchor.appendChild(anchorText);
+        anchor.addEventListener('click',scrollToSection);
+        anchor.classList.add('menu__link');
+        liElement.appendChild(anchor);
+        newFragment.appendChild(liElement);
+    }
+    navList.appendChild(newFragment);
 
+// Add class 'active' to section when near top of viewport
 function toggleActiveState(){
     let activeSectionId = null;
     const allAnchors = document.querySelectorAll('a');
@@ -60,33 +73,13 @@ function toggleActiveState(){
     }
 }
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-function buildNavigationMenu(){
-    for (const section of sections) {
-        const liElement = document.createElement('li');
-        const anchor = document.createElement('a');
-        const anchorText = document.createTextNode(section.getAttribute('data-nav'));
-        anchor.setAttribute('href',"#"+section.getAttribute('id'));
-        anchor.appendChild(anchorText);
-        anchor.addEventListener('click',scrollToSection);
-        anchor.classList.add('menu__link');
-        liElement.appendChild(anchor);
-        newFragment.appendChild(liElement);
-    }
-    navList.appendChild(newFragment);
-}
-
-// Add class 'active' to section when near top of viewport
-
-
 // Scroll to anchor ID using scrollTO event
-
+function scrollToSection(event){
+    event.preventDefault();
+    const secId = event.target.getAttribute('href');
+    const section=document.querySelector(secId);
+    section.scrollIntoView({behavior: 'smooth', block: 'center'}); 
+}
 
 /**
  * End Main Functions
@@ -94,11 +87,5 @@ function buildNavigationMenu(){
  * 
 */
 
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
-
+// Register Scroll Event
 window.addEventListener('scroll', toggleActiveState); 

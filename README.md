@@ -1,13 +1,21 @@
 # Landing Page Project
 
-## Table of Contents
+## About The Project
+The project aims to create a multi-section landing page with navigation menu with dynamically created links,
+and  automatic detection of active section
 
-* [Instructions](#instructions)
 
-## Instructions
+## Languages Used
+1. HTML
+2. CSS
+3. Javascript
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Features
+1. Create navigation menu links dynamically based on available sections
+2. Detecting active sections according to its position
+3. Styling active section and its corresponding menu link to be easaily distinguished
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## External references used
+* [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/)
+* [w3schools](https://www.w3schools.com/)
