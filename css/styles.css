@@ -129,6 +129,13 @@ section {
     }
 }
 
+
+@media only screen and (max-width: 600px){
+    .navbar__menu li {
+        display: block;
+    }
+}
+
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
     margin-left: auto;

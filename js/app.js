@@ -52,18 +52,21 @@ const navList = document.getElementById('navbar__list');
 function toggleActiveState(){
     let activeSectionId = null;
     const allAnchors = document.querySelectorAll('a');
-    for(const anchor of allAnchors){
-        anchor.classList.remove('active-anchor');
-    }
+
     for(const section of sections){
-        const viewProps = section.getBoundingClientRect();
-        if(viewProps.top>=0 && viewProps.top<=500){
+        const sectionRectInfo = section.getBoundingClientRect();
+        /*
+         Check section Position to define its active status,
+         and store its ID value to use for setting link active
+        */
+        if(sectionRectInfo.top >= 0 && sectionRectInfo.bottom < window.innerHeight){
             section.classList.add('your-active-class');
             activeSectionId = section.getAttribute('id');
         }else{
             section.classList.remove('your-active-class');
         }
     }
+    // Set ative nav link
     for (const anchor of allAnchors) {
         if(activeSectionId!==null && anchor.getAttribute('href')==="#"+activeSectionId){
             anchor.classList.add('item-active-class');
