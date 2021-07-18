@@ -20,6 +20,7 @@
 const sections = document.querySelectorAll('section');
 const newFragment = document.createDocumentFragment();
 const navList = document.getElementById('navbar__list');
+const backTopButton = document.getElementById('btnBackTop');
 
 /**
  * End Global Variables
@@ -53,13 +54,20 @@ function toggleActiveState(){
     let activeSectionId = null;
     const allAnchors = document.querySelectorAll('a');
 
+    // Display or hide Back to TOP when the user scrolls below the fold of the page 
+    if(window.pageYOffset > 0){
+        backTopButton.style.display = 'block';
+    }else{
+        backTopButton.style.display = 'none';
+    }
+
     for(const section of sections){
         const sectionRectInfo = section.getBoundingClientRect();
         /*
          Check section Position to define its active status,
          and store its ID value to use for setting link active
         */
-        if(sectionRectInfo.top >= 0 && sectionRectInfo.bottom < window.innerHeight){
+        if(sectionRectInfo.top >= 0 && sectionRectInfo.top < 300){
             section.classList.add('your-active-class');
             activeSectionId = section.getAttribute('id');
         }else{
@@ -92,3 +100,6 @@ function scrollToSection(event){
 
 // Register Scroll Event
 window.addEventListener('scroll', toggleActiveState); 
+backTopButton.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior: 'smooth'})
+})
