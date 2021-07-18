@@ -15,6 +15,7 @@ and  automatic detection of active section
 1. Create navigation menu links dynamically based on available sections
 2. Detecting active sections according to its position
 3. Styling active section and its corresponding menu link to be easaily distinguished
+4. Back to top button to scroll to tpo of the page
 
 ## External references used
 * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/)

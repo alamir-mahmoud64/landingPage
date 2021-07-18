@@ -100,6 +100,8 @@ function scrollToSection(event){
 
 // Register Scroll Event
 window.addEventListener('scroll', toggleActiveState); 
+
+// Register Click Event for back to top button
 backTopButton.addEventListener('click',function(){
     window.scrollTo({top:0,behavior: 'smooth'})
 })
