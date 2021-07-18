@@ -28,29 +28,16 @@ const backTopButton = document.getElementById('btnBackTop');
  * 
 */
 
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-    for (const section of sections) {
-        const liElement = document.createElement('li');
-        const anchor = document.createElement('a');
-        const anchorText = document.createTextNode(section.getAttribute('data-nav'));
-        anchor.setAttribute('href',"#"+section.getAttribute('id'));
-        anchor.appendChild(anchorText);
-        anchor.addEventListener('click',scrollToSection);
-        anchor.classList.add('menu__link');
-        liElement.appendChild(anchor);
-        newFragment.appendChild(liElement);
-    }
-    navList.appendChild(newFragment);
+// Scroll to anchor ID using scrollTO event
+let scrollToSection = (event)=>{
+    event.preventDefault();
+    const secId = event.target.getAttribute('href');
+    const section=document.querySelector(secId);
+    section.scrollIntoView({behavior: 'smooth', block: 'center'}); 
+};
 
 // Add class 'active' to section when near top of viewport
-function toggleActiveState(){
+let toggleActiveState =  () => {
     let activeSectionId = null;
     const allAnchors = document.querySelectorAll('a');
 
@@ -61,7 +48,7 @@ function toggleActiveState(){
         backTopButton.style.display = 'none';
     }
 
-    for(const section of sections){
+    sections.forEach((section) => {
         const sectionRectInfo = section.getBoundingClientRect();
         /*
          Check section Position to define its active status,
@@ -73,24 +60,37 @@ function toggleActiveState(){
         }else{
             section.classList.remove('your-active-class');
         }
-    }
+    });
     // Set ative nav link
-    for (const anchor of allAnchors) {
+    allAnchors.forEach((anchor) => {
         if(activeSectionId!==null && anchor.getAttribute('href')==="#"+activeSectionId){
             anchor.classList.add('item-active-class');
         }else{
             anchor.classList.remove('item-active-class');
         }
-    }
-}
+    });
+};
 
-// Scroll to anchor ID using scrollTO event
-function scrollToSection(event){
-    event.preventDefault();
-    const secId = event.target.getAttribute('href');
-    const section=document.querySelector(secId);
-    section.scrollIntoView({behavior: 'smooth', block: 'center'}); 
-}
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ * 
+*/
+
+// build the nav
+sections.forEach ((section) => {
+    const liElement = document.createElement('li');
+    const anchor = document.createElement('a');
+    const anchorText = document.createTextNode(section.getAttribute('data-nav'));
+    anchor.setAttribute('href',"#"+section.getAttribute('id'));
+    anchor.appendChild(anchorText);
+    anchor.addEventListener('click',scrollToSection);
+    anchor.classList.add('menu__link');
+    liElement.appendChild(anchor);
+    newFragment.appendChild(liElement);
+});
+navList.appendChild(newFragment);
+
 
 /**
  * End Main Functions
